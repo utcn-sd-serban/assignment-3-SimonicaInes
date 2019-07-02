@@ -3,14 +3,13 @@ import model from "../model/model";
 class CreateQuestionPresenter {
 
     onCreate() {
-        model.addQuestion(model.state.newQuestion.title, model.state.newQuestion.question,
-            model.state.newQuestion.author, model.state.newQuestion.date, model.state.newQuestion.tags)
+        model.addQuestion(model.state.newQuestion.authorId, model.state.newQuestion.title, model.state.newQuestion.text,model.state.newQuestion.tags, model.state.newQuestion.date)
             .then(() => {
+                model.changeNewQuestionProperty("authorId", "");
                 model.changeNewQuestionProperty("title", "");
-                model.changeNewQuestionProperty("question", "");
-                model.changeNewQuestionProperty("author", "");
-                model.changeNewQuestionProperty("date", "");
+                model.changeNewQuestionProperty("text", "");
                 model.changeNewQuestionProperty("tags", "");
+                model.changeNewQuestionProperty("date", "");
                 window.location.assign("#/");
             });
     }

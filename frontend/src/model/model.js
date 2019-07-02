@@ -2,36 +2,39 @@ import { EventEmitter } from "events";
 import RestClient from "../rest/RestClient";
 import WebSocketListener from "../ws/WebSocketListener";
 
-const client = new RestClient("serban", "123");
-const listener = new WebSocketListener("serban", "123");
+
+const listener = new WebSocketListener("serban", "password");
 
 class Model extends EventEmitter {
     constructor() {
         super();
+        this.question = new RestClient("serban", "password");
         this.state = {
             questions: [],
             newQuestion: {
+                authorId: "",
                 title: "",
-                question: "",
-                author: "",
-                date: "",
-                tags: ""
+                text: "",
+                tags: "",
+                date: ""
+
+
             }
         };
     }
 
     loadQuestions() {
-        return client.loadAllQuestions().then(questions => {
+        return this.question.loadAllQuestions().then(questions => {
             this.state = { 
-                ...this.state, 
+                ...this.state,
                 questions: questions
             };
             this.emit("change", this.state);
         })
     }
 
-    addQuestion(title, question, author, date, tags) {
-        return client.createQuestion(title, question, author, date, tags)
+    addQuestion(authorId, title, text, tags, date) {
+        return this.question.createQuestion(authorId, title, text, tags, date)
             .then(question => this.appendQuestion(question));
     }
 

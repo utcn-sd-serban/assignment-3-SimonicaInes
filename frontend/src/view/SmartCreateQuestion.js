@@ -5,12 +5,11 @@ import CreateQuestion from "./CreateQuestion";
 import createQuestionPresenter from "../presenter/createQuestionPresenter";
 
 const mapModelStateToComponentState = modelState => ({
+    authorId: modelState.newQuestion.authorId,
     title: modelState.newQuestion.title,
-    question: modelState.newQuestion.question,
-    author: modelState.newQuestion.author,
+    text: modelState.newQuestion.text,
+    tags: modelState.newQuestion.tags,
     date: modelState.newQuestion.date,
-    tags: modelState.newQuestion.tags
-
 });
 
 export default class SmartCreateQuestion extends Component {
@@ -30,11 +29,11 @@ export default class SmartCreateQuestion extends Component {
             <CreateQuestion
                 onCreate={createQuestionPresenter.onCreate}
                 onChange={createQuestionPresenter.onChange}
+                authorId={this.state.authorId}
                 title={this.state.title}
-                question={this.state.question}
-                author={this.state.author}
-                date={this.state.date}
-                tags={this.state.tags}/>
+                text={this.state.text}
+                tags={this.state.tags}
+                date={this.state.date}/>
         );
     }
 }

@@ -1,5 +1,7 @@
 package ro.utcn.sd.a3.event;
 
 public enum EventType {
-    QUESTION_CREATED
+    STUDENT_CREATED,
+    QUESTION_CREATED,
+    TAG_CREATED
 }

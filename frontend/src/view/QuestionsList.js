@@ -6,22 +6,22 @@ const QuestionsList = ({ questions, title, onCreateQuestion }) => (
         <table border="1">
             <thead>
                 <tr>
+                    <th>Author Id</th>
                     <th>Title</th>
-                    <th>Question</th>
-                    <th>Author</th>
-                    <th>Date</th>
+                    <th>Text</th>
                     <th>Tags</th>
+                    <th>Date</th>
                 </tr>
             </thead>
             <tbody>
                 {
                     questions.map((question, index) => (
                         <tr key={index} data-cy="question">
+                            <td>{question.authorId}</td>
                             <td>{question.title}</td>
-                            <td>{question.question}</td>
-                            <td>{question.author}</td>
-                            <td>{question.date}</td>
+                            <td>{question.text}</td>
                             <td>{question.tags}</td>
+                            <td>{question.date}</td>
                         </tr>
                     ))
                 }
