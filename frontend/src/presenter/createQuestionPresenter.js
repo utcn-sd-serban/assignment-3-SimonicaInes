@@ -10,7 +10,7 @@ class CreateQuestionPresenter {
                 model.changeNewQuestionProperty("text", "");
                 model.changeNewQuestionProperty("tags", "");
                 model.changeNewQuestionProperty("date", "");
-                window.location.assign("#/");
+                window.location.assign("#/questions");
             });
     }
 

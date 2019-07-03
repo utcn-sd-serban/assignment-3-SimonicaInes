@@ -5,7 +5,6 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ro.utcn.sd.a3.dto.QuestionDTO;
-import ro.utcn.sd.a3.dto.TagDTO;
 import ro.utcn.sd.a3.entity.Question;
 import ro.utcn.sd.a3.entity.QuestionTag;
 import ro.utcn.sd.a3.entity.Tag;
@@ -14,11 +13,9 @@ import ro.utcn.sd.a3.repository.QuestionRepository;
 import ro.utcn.sd.a3.repository.QuestionTagRepository;
 import ro.utcn.sd.a3.repository.TagRepository;
 
-import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -47,7 +44,7 @@ public class QuestionService {
     }
 
     @Transactional
-    public QuestionDTO create(QuestionDTO dto) {
+    public QuestionDTO create(QuestionDTO dto) { //add to repo: question, tags, questiontags
         Question question = new Question();
         question.setAuthorId(dto.getAuthorId());
         question.setTitle(dto.getTitle());
@@ -66,5 +63,7 @@ public class QuestionService {
         eventPublisher.publishEvent(new QuestionCreatedEvent(output));
         return output;
     }
+
+    //here filter?
 
 }

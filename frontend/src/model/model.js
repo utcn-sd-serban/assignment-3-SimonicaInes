@@ -8,7 +8,7 @@ const listener = new WebSocketListener("serban", "password");
 class Model extends EventEmitter {
     constructor() {
         super();
-        this.question = new RestClient("serban", "password");
+        this.question = new RestClient();
         this.state = {
             questions: [],
             newQuestion: {
@@ -17,11 +17,30 @@ class Model extends EventEmitter {
                 text: "",
                 tags: "",
                 date: ""
+            },
+            filteredQuestions: [{
+                title: "",
+                question: "",
+                author: "",
+                date: "",
+                tags: ""
+            }],
+
+            toFilter:"Kittens",
+
+            username:"",
+            password:""
 
 
-            }
         };
     }
+
+    login(){
+        this.question = new RestClient(this.state.username,this.state.password);
+    }
+
+
+
 
     loadQuestions() {
         return this.question.loadAllQuestions().then(questions => {
@@ -56,6 +75,43 @@ class Model extends EventEmitter {
         };
         this.emit("change", this.state);
     }
+
+    changeProperty(property, value) {
+        this.state = {
+            ...this.state,
+            [property]: value
+        };
+        this.emit("change", this.state);
+    }
+
+    swapToFilter(property, value){
+        this.state={
+            ...this.state,
+            [property]:value
+        };
+        this.emit("change", this.state);
+    }
+    addToFIlteredQuestions(title, question, author, date, tags){
+        this.state = {
+            ...this.state,
+            filteredQuestions: this.state.filteredQuestions.concat([{
+                title: title,
+                question: question,
+                author: author,
+                date: date,
+                tags: tags
+            }])
+        };
+    }
+    clearFilters(){
+        this.state = {
+            ...this.state,
+            filteredQuestions: []
+        };
+    }
+
+
+
 }
 
 const model = new Model();
