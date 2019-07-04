@@ -19,11 +19,11 @@ class Model extends EventEmitter {
                 date: ""
             },
             filteredQuestions: [{
+                authorId: "",
                 title: "",
-                question: "",
-                author: "",
-                date: "",
-                tags: ""
+                text: "",
+                tags: "",
+                date: ""
             }],
 
             toFilter:"Kittens",
@@ -91,15 +91,16 @@ class Model extends EventEmitter {
         };
         this.emit("change", this.state);
     }
-    addToFIlteredQuestions(title, question, author, date, tags){
+    addToFIlteredQuestions(authorId, title, text, tags, date){
         this.state = {
             ...this.state,
             filteredQuestions: this.state.filteredQuestions.concat([{
+                authorId: authorId,
                 title: title,
-                question: question,
-                author: author,
-                date: date,
-                tags: tags
+                text: text,
+                tags: tags,
+                date: date
+
             }])
         };
     }

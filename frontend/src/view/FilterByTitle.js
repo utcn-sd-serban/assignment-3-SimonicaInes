@@ -7,7 +7,7 @@ const FilterByTitle = ({filteredQuestions}) => (
                 <thead>
                 <tr>
                     <th> Title </th>
-                    <th> Question </th>
+                    <th> Text </th>
                     <th> Author </th>
                     <th> Date </th>
                     <th> Tags </th>
@@ -18,8 +18,8 @@ const FilterByTitle = ({filteredQuestions}) => (
                     filteredQuestions.map((question, index)=>(
                         <tr key={index}>
                             <td>{question.title}</td>
-                            <td>{question.question}</td>
-                            <td>{question.author}</td>
+                            <td>{question.text}</td>
+                            <td>{question.authorId}</td>
                             <td>{question.date}</td>
                             <td>{question.tags}</td>
                         </tr>

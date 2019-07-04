@@ -19,4 +19,8 @@ public class Tag {
     public Tag(String text){
         this.text=text;
     }
+    public String toString(){
+        return this.text;
+    }
+
 }

@@ -16,11 +16,12 @@ class QuestionsListPresenter {
         for(iterator=0; iterator<model.state.questions.length; iterator++){
             if(model.state.questions[iterator].title===model.state.toFilter){
                 model.addToFIlteredQuestions(
+                    model.state.questions[iterator].authorId,
                     model.state.questions[iterator].title,
-                    model.state.questions[iterator].question,
-                    model.state.questions[iterator].author,
-                    model.state.questions[iterator].date,
-                    model.state.questions[iterator].tags
+                    model.state.questions[iterator].text,
+                    model.state.questions[iterator].tags,
+
+                model.state.questions[iterator].date
                 )
             }
         }
@@ -40,11 +41,12 @@ class QuestionsListPresenter {
         for (iterator = 0; iterator < model.state.questions.length; iterator++) {
             if (model.state.questions[iterator].tags === model.state.toFilter) {
                 model.addToFIlteredQuestions(
+                    model.state.questions[iterator].authorId,
                     model.state.questions[iterator].title,
-                    model.state.questions[iterator].question,
-                    model.state.questions[iterator].author,
-                    model.state.questions[iterator].date,
-                    model.state.questions[iterator].tags
+                    model.state.questions[iterator].text,
+                    model.state.questions[iterator].tags,
+
+                    model.state.questions[iterator].date
                 )
             }
         }
